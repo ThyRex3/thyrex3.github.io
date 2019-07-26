@@ -30,5 +30,47 @@
   </div> -->
 </div>
 
+<!-- <script>
+  $(function() {
+    var customCss = "{{ page.customcss }}";
+    if ( customCss !== null && customCss !== '') {
+      console.log(customCss);
+      // var cssUrl = "{{ \"/assets | append: page.customcss\" | relative_url }}";
+      // $("head").append($("<link rel='stylesheet' href='"+ cssUrl +"' type='text/css' media='screen' />"));
+    }
+});
+</script> -->
 <!-- https://www.w3schools.com/icons/fontawesome_icons_brand.asp -->
 <!-- https://embed.plnkr.co/LpJLnT/ -->
+
+<!-- {% if page.guest %} -->
+<!-- <link rel="stylesheet" property="stylesheet" href="{{ "/assets/gallery.css" | relative_url }}"> -->
+
+<!-- {% endif %} -->
+
+
+
+<!-- {%- for page in site.pages -%} -->
+  <!-- <p>Page: {{ page.title }}</p>
+  <p>Path: {{ page.path }}</p> -->
+  <!-- <p>PATH: {{ my_page.title | escape | upcase }}</p>
+  {%- assign my_page = site.pages | where: "path", path | first -%}
+  <p>PAGE TITLE: {{ my_page.title | escape | upcase }}</p> -->
+  <!-- {% if my_page.title == page.path %} -->
+    <!-- <p>{{ my_page.title | escape | upcase }}</p> -->
+  <!-- <li class="nav-item">
+    <a class="nav-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape | upcase }}</a>
+  </li> -->
+  <!-- {% endif %} -->
+<!-- {% endfor -%} -->
+
+
+
+<!-- <script>
+    // Keep dropdown open when browsing within
+    link = $('a').filter(function(index) {
+      return $(this).attr("href") === document.location["pathname"];
+    });
+    dropdown = link.parents('.navbar-nav');
+    dropdown.removeClass("animate slideIn").addClass('show');
+  </script> -->

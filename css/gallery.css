@@ -1,0 +1,16 @@
+.row {
+  margin: 15px;
+}
+
+img {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+img:hover {
+  opacity: 0.3;
+}

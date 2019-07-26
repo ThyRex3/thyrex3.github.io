@@ -1,12 +1,16 @@
 ---
-layout: page
+layout: home
 ---
-<h1>It's so Toas-THY in here!</h1>
+
+<h1>It's Thy Time!</h1>
+
+<b>This website is still UNDER CONSTRUCTION.<b>
 
 Hi!  I'm [Thy Dai](mailto:tdai1011@gmail.com).  This is a small personal website to house my resume and portfolio.
 
+<br>
 <div class="list-group">
-  <h1>Recent Tutorials</h1>
+  <h2>Recent Tutorials</h2>
   <ul class="posts noList">
   {% for post in site.posts limit:3 %}
     <li>

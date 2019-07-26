@@ -1,0 +1,15 @@
+{
+  "name": "thyrex3.github.io",
+  "version": "0.0.1",
+  "description": "Thy's portfolio of work and hobbies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThyRex3/thyrex3.github.io.git"
+  },
+  "author": "Thy Dai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThyRex3/thyrex3.github.io/issues"
+  },
+  "homepage": "https://thyrex3.github.io"
+}
