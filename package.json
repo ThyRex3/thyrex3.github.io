@@ -11,5 +11,23 @@
   "bugs": {
     "url": "https://github.com/ThyRex3/thyrex3.github.io/issues"
   },
-  "homepage": "https://thyrex3.github.io"
+  "homepage": "https://thyrex3.github.io",
+  "devDependencies": {
+    "@types/gulp": "^4.0.6",
+    "browser-sync": "^2.26.7",
+    "del": "^5.0.0",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-imagemin": "^6.0.0",
+    "gulp-load-plugins": "^2.0.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uncss": "^1.0.6"
+  },
+  "dependencies": {
+    "@types/gulp-sass": "^4.0.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1"
+  }
 }
