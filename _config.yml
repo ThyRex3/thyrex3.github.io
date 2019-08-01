@@ -32,9 +32,13 @@ plugins:
 # A list of the pages to display in the navigation bar
 header_pages:
   - cv
-  - categories
+  - tutorials
+  - blog
   - gallery
   - contact
+
+include: ['_pages']
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
@@ -43,4 +47,3 @@ exclude:
   - Gemfile.lock
   - node_modules
   - update_boostrap.sh
- 

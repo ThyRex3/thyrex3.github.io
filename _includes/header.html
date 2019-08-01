@@ -2,15 +2,16 @@
   <div class="container">
     <a class="navbar-brand" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape | upcase }}</a>
 
-    {%- assign page_paths = site.header_pages -%}
+    {%- assign pages = site.header_pages -%}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><i class="fa fa-navicon"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        {%- for path in page_paths -%}
-          {%- assign my_page = site.pages | where: "path", path | first -%}
+        {%- for permalink in pages -%}
+          {%- assign path = permalink | prepend: "/" | append: ".html" %}
+          {%- assign my_page = site.pages | where: "permalink", path | first -%}
           {%- if my_page.title -%}
           <li class="nav-item">
             <a class="nav-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape | upcase }}</a>
