@@ -119,25 +119,15 @@ var prices = [
 
 function calcCost(priceMap, students) {
   var pricePerStudent = priceMap[1];
-  if (students >= 7 && students < 20) {
-    pricePerStudent = priceMap[7]/7;
-  }
-  else if (students >= 20 && students < 40) {
-    pricePerStudent = priceMap[20]/20;
+
+  for (var tier in priceMap) {
+    tier = parseInt(tier);
+    if (priceMap.hasOwnProperty(tier) && students >= tier && students < 40) {
+      pricePerStudent = priceMap[tier]/tier;
+    }
   }
   
-  return (students * pricePerStudent).toFixed(2);
-}
-
-function toArrayAndReverse(priceMap) {
-  var result = [];
-  for(var key in priceMap) {
-    if (key == 40)
-      break;
-    result.unshift([parseInt(key), priceMap[key]]);
-  }
-
-  return result;
+  return students * pricePerStudent;
 }
 
 function calculateTotal() {
@@ -152,11 +142,13 @@ function calculateTotal() {
   }
 
   var cost = 0;
-  if (students >= 40) 
-    document.getElementById('totalCost').innerHTML = priceMap[40].toFixed(2);
-  else {
-    // var array = toArrayAndReverse(priceMap);
-    document.getElementById('totalCost').innerHTML = calcCost(priceMap, students);
-  }
+  if (students == 0) 
+    cost = 0;
+  else if (students >= 40) 
+    cost = priceMap[40];
+  else
+    cost = calcCost(priceMap, students);
+
+  document.getElementById('totalCost').innerHTML = cost.toFixed(2);
 }
 </script>
