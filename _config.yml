@@ -33,6 +33,7 @@ plugins:
 header_pages:
   - cv
   - tutorials
+  - portfolio
   - blog
   - gallery
   - contact
