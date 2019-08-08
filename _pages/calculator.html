@@ -11,15 +11,19 @@ custom_css: calc
            <fieldset>
            <div class="form-left">
               <legend>HSEL Pricing Calculator</legend>
-                 <br
-                      <label for='students' class="inlinelabel">Students?</label>
-                          <input id="students" type="number" value="1" min="0" max="120" onchange="calculateTotal()">
-                  <br>
-                  <label for='seasonsOption' class="inlinelabel">Fall?</label>
-                  <input type="checkbox" id="seasonsOption" name='seasonsOption' value="Fall" onclick="calculateTotal()" />
-             <br>
-                  <label for='seasonsOption' class="inlinelabel">Winter?</label>
-                  <input type="checkbox" id="seasonsOption" name='seasonsOption' value="Winter" onclick="calculateTotal()" />
+              <label >Seasons</label>      
+                      <select id="seasons" name='seasons' onchange="calculateTotal()">
+                          <option value="None">Select</option>
+                          <option value="Fall">Fall</option>
+                          <option value="Winter">Winter</option>
+                          <option value="Spring">Spring</option>
+                          <option value="Annual">Annual</option>
+                          <option value="Fall and Winter">Fall and Winter</option>
+                     </select>
+                     <br>
+                 <br>
+                  <label for='students' class="inlinelabel">Students?</label>
+                  <input id="students" type="number" value="1" min="0" max="120" onchange="calculateTotal()">
           </div>
           <div class="form-right">
              Total: <span id="totalCost"></span>
@@ -45,17 +49,15 @@ function getStudents() {
     return students;
 }
 
-function isLowFlow() {
-    var lowFlowValue = 1;
-    var theForm = document.forms["hselPricingForm"];
-    var includeCandles = theForm.elements["seasonsOption"];
+function getSeasons() {
 
-    if(seasonsOption.checked == true) {
-        seasons.push(seasonsOption.name);
-        console.log(seasons);
-        lowFlowValue = 1/2;
-    }
-    return lowFlowValue;
+  var seasons = 0;
+  var theForm = document.forms["hselPricingForm"];
+  var selectedSeasons = theForm.elements["seasons"];
+  
+  seasons = selectedSeasons.options[selectedSeasons.selectedIndex].value;
+  console.log(seasons);
+  return seasons;
 }
 
 var prices = [
@@ -137,26 +139,14 @@ function toArrayAndReverse(priceMap) {
   return result;
 }
 
-function getSeasons(){
-  var items=document.getElementsByName('seasonsOption');
-  var selectedItems=[];
-  for(var i=0; i<items.length; i++){
-    if(items[i].type=='checkbox' && items[i].checked==true)
-      selectedItems.push(items[i].value);
-  }
-  console.log(selectedItems);
-  return selectedItems;
-}	
-
 function calculateTotal() {
   var students = getStudents();
   var priceMap = {};
-  var season = "Winter";
-  // var lowFlow = isLowFlow();
-  getSeasons();
+  // var season = "Winter";
+  var seasons = getSeasons();
   
   for(var i=0; i<prices.length; i++) {
-    if(prices[i].passName == season)
+    if(prices[i].passName == seasons)
       priceMap = prices[i].priceStructure;
   }
 
