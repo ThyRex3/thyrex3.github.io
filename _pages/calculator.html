@@ -1,0 +1,171 @@
+---
+layout: page
+permalink: /calculator.html
+title: Calculator
+custom_css: calc
+---
+
+
+<div id="wrap">
+    <form action="" id="hselPricingForm" onsubmit="return false;">
+           <fieldset>
+           <div class="form-left">
+              <legend>HSEL Pricing Calculator</legend>
+                 <br
+                      <label for='students' class="inlinelabel">Students?</label>
+                          <input id="students" type="number" value="1" min="0" max="120" onchange="calculateTotal()">
+                  <br>
+                  <label for='seasonsOption' class="inlinelabel">Fall?</label>
+                  <input type="checkbox" id="seasonsOption" name='seasonsOption' value="Fall" onclick="calculateTotal()" />
+             <br>
+                  <label for='seasonsOption' class="inlinelabel">Winter?</label>
+                  <input type="checkbox" id="seasonsOption" name='seasonsOption' value="Winter" onclick="calculateTotal()" />
+          </div>
+          <div class="form-right">
+             Total: <span id="totalCost"></span>
+          </div>
+            </fieldset>          
+   </form>
+</div><!--End of wrap-->
+
+
+<script>
+/*
+ref: www.javascript-coder.com/javascript-form/javascript-calculator-script.phtml
+inspired by: https://www.swfwmd.state.fl.us/conservation/thepowerof10/
+*/
+var seasons = [];
+function getStudents() {
+
+    var students = 0;
+    var theForm = document.forms["hselPricingForm"];
+    
+    students = document.getElementById("students").value;
+
+    return students;
+}
+
+function isLowFlow() {
+    var lowFlowValue = 1;
+    var theForm = document.forms["hselPricingForm"];
+    var includeCandles = theForm.elements["seasonsOption"];
+
+    if(seasonsOption.checked == true) {
+        seasons.push(seasonsOption.name);
+        console.log(seasons);
+        lowFlowValue = 1/2;
+    }
+    return lowFlowValue;
+}
+
+var prices = [
+  {
+    passName: 'Fall',
+    priceStructure: {
+      1: 37,
+      7: 233,
+      20: 592,
+      40: 1036
+    }
+  },
+  {
+    passName: 'Spring',
+    priceStructure: {
+        1: 37,
+        7: 233,
+        20: 592,
+        40: 1036
+    }
+  },
+  {
+    passName: 'Winter',
+    priceStructure: {
+      1: 30,
+      7: 190,
+      20: 480,
+      40: 840
+    }
+  },
+  {
+    passName: 'Summer',
+    priceStructure: {
+      1: 30,
+      7: 190,
+      20: 480,
+      40: 840
+    }
+  },
+  {
+    passName: 'Fall and Winter',
+    priceStructure: {
+      1: 59,
+      7: 389,
+      20: 978,
+      40: 1688
+    }
+  },
+  {
+    passName: 'Annual',
+    priceStructure: {
+      1: 100,
+      7: 630,
+      20: 1599,
+      40: 2800
+    }
+  }
+];
+
+function calcCost(prices, length, students) {
+  var cost = 0;
+  for (var i=0; i<length; i++) {
+    while (students >= prices[i][0]) {
+      students=students-prices[i][0];
+      cost = cost + prices[i][1];
+    }
+  }
+  return cost;
+}
+
+function toArrayAndReverse(priceMap) {
+  var result = [];
+  for(var key in priceMap) {
+    if (key == 40)
+      break;
+    result.unshift([parseInt(key), priceMap[key]]);
+  }
+
+  return result;
+}
+
+function getSeasons(){
+  var items=document.getElementsByName('seasonsOption');
+  var selectedItems=[];
+  for(var i=0; i<items.length; i++){
+    if(items[i].type=='checkbox' && items[i].checked==true)
+      selectedItems.push(items[i].value);
+  }
+  console.log(selectedItems);
+  return selectedItems;
+}	
+
+function calculateTotal() {
+  var students = getStudents();
+  var priceMap = {};
+  var season = "Winter";
+  // var lowFlow = isLowFlow();
+  getSeasons();
+  
+  for(var i=0; i<prices.length; i++) {
+    if(prices[i].passName == season)
+      priceMap = prices[i].priceStructure;
+  }
+
+  var cost = 0;
+  if (students >= 40) 
+    document.getElementById('totalCost').innerHTML = priceMap[40];
+  else {
+    var array = toArrayAndReverse(priceMap);
+    document.getElementById('totalCost').innerHTML = calcCost(array, array.length, students);
+  }
+}
+</script>

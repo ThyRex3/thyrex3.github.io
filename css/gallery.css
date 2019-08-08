@@ -1,8 +1,9 @@
-.row {
+.gallery-col {
   margin: 5px;
 }
 
 img {
+  margin: 5px;
   opacity: 1;
   display: block;
   width: 100%;
@@ -19,11 +20,123 @@ img:hover {
   max-width: 260px;
 }
 
-img {
-  margin: 5px;
-}
-
 .scale {
   transform: scaleY(1.05);
-  padding-top: 5px; 
+  padding-top: 5px;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:600;700");
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.thumbnail {
+  margin: 5px;
+  position: relative;
+  flex-basis: 33.3333%;
+  height: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: #333333;
+  cursor: progress;
+}
+.thumbnail__loaded {
+  cursor: pointer;
+}
+.thumbnail__loaded .thumbnail__loader {
+  display: none;
+}
+.thumbnail__loaded .thumbnail__text {
+  display: block;
+}
+.thumbnail__loaded .thumbnail__timeline--ghost,
+.thumbnail__loaded .thumbnail__timeline--progress {
+  display: block;
+}
+.thumbnail:hover video {
+  filter: brightness(100%) grayscale(0%);
+  transition: filter 0.2s ease;
+}
+.thumbnail:hover .thumbnail__text {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.thumbnail:hover .thumbnail__timeline--ghost {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+@media (max-width: 1024px) {
+  .thumbnail {
+    flex-basis: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .thumbnail {
+    flex-basis: 100%;
+  }
+}
+.thumbnail video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(50%) grayscale(50%);
+  transition: filter 0.2s ease;
+}
+.thumbnail video::-webkit-media-controls {
+  display: none !important;
+}
+
+.thumbnail__loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #fff;
+  animation: loader 2s linear infinite;
+}
+
+.thumbnail__text {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #fff;
+  transition: opacity 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.thumbnail__timeline {
+  position: absolute;
+  display: none;
+  bottom: 0;
+  height: 5px;
+}
+.thumbnail__timeline--progress {
+  width: 0;
+  background: #fff;
+}
+.thumbnail__timeline--ghost {
+  background: rgba(51, 51, 51, 0.6);
+  width: 100%;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

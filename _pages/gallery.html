@@ -9,13 +9,20 @@ custom_js:
 - ekko-lightbox.js
 - ekko-lightbox.min.js
 ---
-
-<div class="container-fluid animate slideIn">
+<div class="container animate slideIn">
   <div class="d-flex flex-row flex-wrap justify-content-center">
-    <div class="row d-flex flex-column">
-      <a href="{{site.baseurl}}/assets/images/gallery/jrdf.jpg" data-toggle="lightbox" data-gallery="gallery">
-        <img src="{{site.baseurl}}/assets/images/gallery/jrdf.jpg" class="img-fluid rounded">
-      </a>
+    <div class="gallery-col d-flex flex-column">
+      <div class="thumbnail rounded">
+        <video id="jrdf" preload="auto" muted poster="{{site.baseurl}}/assets/images/gallery/jrdf.jpg">
+          <source
+            src="{{site.baseurl}}/assets/images/gallery/jrdf-performance.MOV"
+            type='video/mp4;' />
+        </video>
+        <span class="thumbnail__text">JDRF 2017</span>
+        <div class="thumbnail__timeline thumbnail__timeline--ghost"></div>
+        <div class="thumbnail__timeline thumbnail__timeline--progress"></div>
+        <div class="thumbnail__loader"></div>
+      </div>
       <a href="{{site.baseurl}}/assets/images/gallery/stealing_fire.JPG" data-toggle="lightbox" data-gallery="gallery">
         <img src="{{site.baseurl}}/assets/images/gallery/stealing_fire.JPG" class="img-fluid rounded">
       </a>
@@ -23,50 +30,91 @@ custom_js:
         <img src="{{site.baseurl}}/assets/images/gallery/return_1.PNG" class="img-fluid rounded">
       </a>
     </div>
-    <div class="row d-flex flex-column">
+    <div class="gallery-col d-flex flex-column">
       <a href="{{site.baseurl}}/assets/images/gallery/pole_seattle.jpg" data-toggle="lightbox" data-gallery="gallery">
         <img src="{{site.baseurl}}/assets/images/gallery/pole_seattle.jpg" class="img-fluid rounded">
       </a>
       <a href="{{site.baseurl}}/assets/images/gallery/bend_seattle.jpg" data-toggle="lightbox" data-gallery="gallery">
         <img src="{{site.baseurl}}/assets/images/gallery/bend_seattle.jpg" class="img-fluid rounded">
       </a>
+      
     </div>
-
-    <!-- <div class="row d-flex flex-column">
-      <img src="{{site.baseurl}}/assets/images/gallery/jrdf.jpg"
-        class="img-fluid">
-
-      <img src="https://images.unsplash.com/photo-1502865787650-3f8318917153?auto=format&fit=crop&w=334&q=80"
-        class="img-fluid">
+    <div class="gallery-col d-flex flex-column">
+      <!-- 2 -->
+      <div class="thumbnail rounded">
+        <video preload="auto" muted>
+          <source
+            src="https://player.vimeo.com/external/288299338.sd.mp4?s=ce4e1834ba4818528be42b6271d21e0c64376de8&profile_id=165&oauth2_token_id=57447761"
+            type='video/mp4;' />
+        </video>
+        <span class="thumbnail__text">Lorem Ipsum</span>
+        <div class="thumbnail__timeline thumbnail__timeline--ghost"></div>
+        <div class="thumbnail__timeline thumbnail__timeline--progress"></div>
+        <div class="thumbnail__loader"></div>
+      </div>
+      <!-- 3 -->
+      <div class="thumbnail rounded">
+        <video preload="auto" muted>
+          <source
+            src="https://player.vimeo.com/external/291913746.sd.mp4?s=1154023371351e79d40eef2c2d1be8fb01af2528&profile_id=164&oauth2_token_id=57447761"
+            type='video/mp4;' />
+        </video>
+        <span class="thumbnail__text">Lorem Ipsum</span>
+        <div class="thumbnail__timeline thumbnail__timeline--ghost"></div>
+        <div class="thumbnail__timeline thumbnail__timeline--progress"></div>
+        <div class="thumbnail__loader"></div>
+      </div>
+      <!-- 5 -->
+      <div class="thumbnail rounded">
+        <video preload="auto" muted>
+          <source
+            src="https://player.vimeo.com/external/269972367.sd.mp4?s=fa11ed426cbb0ce7fbbef1625f2ecf38d775995c&profile_id=164&oauth2_token_id=57447761"
+            type='video/mp4;' />
+        </video>
+        <span class="thumbnail__text">Lorem Ipsum</span>
+        <div class="thumbnail__timeline thumbnail__timeline--ghost"></div>
+        <div class="thumbnail__timeline thumbnail__timeline--progress"></div>
+        <div class="thumbnail__loader"></div>
+      </div>
     </div>
+  </div>
 
-    <div class="row d-flex flex-column">
-      <img src="https://images.unsplash.com/photo-1500816558239-6b91f4256ead?auto=format&fit=crop&w=331&q=80"
-        class="img-fluid">
+  <script>
+    $(document).on("click", '[data-toggle="lightbox"]', function (event) {
+      event.preventDefault();
+      $(this).ekkoLightbox();
+    });
 
-      <img src="https://images.unsplash.com/photo-1487376318617-f43c7b41e2e2?auto=format&fit=crop&w=750&q=80"
-        class="img-fluid scale">
-    </div>
+    // https://codepen.io/hermanwikner/pen/wOxaPN
+    let thumbnails = document.getElementsByClassName('thumbnail');
+    let timeline = document.getElementsByClassName('thumbnail__timeline--progress');
+    let videos = document.querySelectorAll('video');
+    let loader = document.getElementsByClassName('thumbnail__loader');
 
-    <div class="row d-flex flex-column">
-      <img src="https://images.unsplash.com/photo-1497888329096-51c27beff665?auto=format&fit=crop&w=751&q=80"
-        class="img-fluid scale mb-2">
-      <img src="https://images.unsplash.com/photo-1505253468034-514d2507d914?auto=format&fit=crop&w=334&q=80"
-        class="img-fluid">
-    </div>
+    for (let i = 0; i < thumbnails.length; i++) {
+      thumbnails[i].addEventListener('mouseover', () => {
+        videos[i].play();
+        timeline[i].style.transition = `width ${videos[i].duration}s linear`
+        timeline[i].style.width = '100%'
+      })
+      thumbnails[i].addEventListener('mouseout', () => {
+        videos[i].currentTime = 0;
+        videos[i].pause();
+        timeline[i].style.transition = `width 0s linear`
+        timeline[i].style.width = '0%'
+      })
+    }
 
-    <div class="row d-flex flex-column">
-      <img src="https://images.unsplash.com/photo-1502550900787-e956c314a221?auto=format&fit=crop&w=334&q=80"
-        class="img-fluid m-1 p-1">
-      <img src="https://images.unsplash.com/photo-1455853659719-4b521eebc76d?auto=format&fit=crop&w=750&q=80"
-        class="img-fluid image m-1 p-1">
-    </div>
-  </div> -->
-</div>
+    for (let i = 0; i < videos.length; i++) {
+      videos[i].addEventListener('loadeddata', function () {
+        thumbnails[i].classList.add('thumbnail__loaded');
+      }, false);
+    }
 
-<script>
-  $(document).on("click", '[data-toggle="lightbox"]', function (event) {
-    event.preventDefault();
-    $(this).ekkoLightbox();
-  });
-</script>
+    var myVideo = document.getElementById('jrdf');
+
+    myVideo.addEventListener('click', function () {
+      myVideo.webkitRequestFullScreen();
+    }, false);
+
+  </script>

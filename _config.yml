@@ -36,6 +36,7 @@ header_pages:
   - blog
   - gallery
   - contact
+  - calculator
 
 include: ['_pages']
 

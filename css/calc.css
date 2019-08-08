@@ -1,0 +1,36 @@
+
+#wrap{
+   width:80%;
+   padding:0 10%;
+   margin:0 auto;
+   text-align:left;
+   background:#eee;
+   font-family:AvenirLTStd, Arial, Helvetica, sans-serif;
+ 
+ }
+ body {
+     line-height:2;
+ }
+ body, select, input {
+     font-size:1em;    
+ }
+ 
+ fieldset {
+    border:0;
+ }
+ 
+ .boxy:before {
+     content: "\f2cc";
+     color: lightblue;
+     font-family: FontAwesome;
+ }
+ 
+ .boxy {
+     float: left;
+     margin: 2px;
+   }
+ 
+ .form-left, .form-right {
+     float: left;
+     width: 50%;
+ }
