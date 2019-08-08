@@ -4,62 +4,33 @@ permalink: /calculator.html
 title: Calculator
 custom_css: calc
 ---
-
-
-<div id="wrap">
-    <form action="" id="hselPricingForm" onsubmit="return false;">
-           <fieldset>
-           <div class="form-left">
-              <legend>HSEL Pricing Calculator</legend>
-              <label >Seasons</label>      
-                      <select id="seasons" name='seasons' onchange="calculateTotal()">
-                          <option value="None">Select</option>
-                          <option value="Fall">Fall</option>
-                          <option value="Winter">Winter</option>
-                          <option value="Spring">Spring</option>
-                          <option value="Annual">Annual</option>
-                          <option value="Fall and Winter">Fall and Winter</option>
-                     </select>
-                     <br>
-                 <br>
-                  <label for='students' class="inlinelabel">Students?</label>
-                  <input id="students" type="number" value="1" min="0" max="120" onchange="calculateTotal()">
-          </div>
-          <div class="form-right">
-             Total: <span id="totalCost"></span>
-          </div>
-            </fieldset>          
-   </form>
-</div><!--End of wrap-->
+<div>
+  <form action="" id="hselPricingForm" onsubmit="return false;">
+    <fieldset>
+      <div>
+        <legend>HSEL Pricing Calculator</legend>
+        <label >Seasons</label>      
+        <select id="seasons" name='seasons' onchange="calculateTotal()">
+            <option value="None">Select</option>
+            <option value="Fall">Fall</option>
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+            <option value="Annual">Annual</option>
+            <option value="Fall and Winter">Fall and Winter</option>
+        </select>
+        <br>
+      <label for='students'>Students?</label>
+      <input id="students" type="number" value="1" min="0" max="120" onchange="calculateTotal()">
+      </div>
+      <div>
+          Total: <span id="totalCost"></span>
+      </div>
+    </fieldset>
+  </form>
+</div>
 
 
 <script>
-/*
-ref: www.javascript-coder.com/javascript-form/javascript-calculator-script.phtml
-inspired by: https://www.swfwmd.state.fl.us/conservation/thepowerof10/
-*/
-var seasons = [];
-function getStudents() {
-
-    var students = 0;
-    var theForm = document.forms["hselPricingForm"];
-    
-    students = document.getElementById("students").value;
-
-    return students;
-}
-
-function getSeasons() {
-
-  var seasons = 0;
-  var theForm = document.forms["hselPricingForm"];
-  var selectedSeasons = theForm.elements["seasons"];
-  
-  seasons = selectedSeasons.options[selectedSeasons.selectedIndex].value;
-  console.log(seasons);
-  return seasons;
-}
-
 var prices = [
   {
     passName: 'Fall',
@@ -73,10 +44,10 @@ var prices = [
   {
     passName: 'Spring',
     priceStructure: {
-        1: 37,
-        7: 233, // 33.2857 per student 
-        20: 592, // 29.60 per student
-        40: 1036
+      1: 37,
+      7: 233, // 33.2857 per student 
+      20: 592, // 29.60 per student
+      40: 1036
     }
   },
   {
@@ -117,6 +88,23 @@ var prices = [
   }
 ];
 
+function getStudents() {
+  var students = 0;
+  var theForm = document.forms["hselPricingForm"];
+  
+  students = document.getElementById("students").value;
+  return students;
+}
+
+function getSeasons() {
+  var seasons = 0;
+  var theForm = document.forms["hselPricingForm"];
+  var selectedSeasons = theForm.elements["seasons"];
+  
+  seasons = selectedSeasons.options[selectedSeasons.selectedIndex].value;
+  return seasons;
+}
+
 function calcCost(priceMap, students) {
   var pricePerStudent = priceMap[1];
 
@@ -126,7 +114,7 @@ function calcCost(priceMap, students) {
       pricePerStudent = priceMap[tier]/tier;
     }
   }
-  
+
   return students * pricePerStudent;
 }
 
