@@ -65,8 +65,6 @@ var prices = [
     passName: 'Fall',
     priceStructure: {
       1: 37,
-      7: 233,
-      20: 592,
       40: 1036
     }
   },
@@ -74,8 +72,6 @@ var prices = [
     passName: 'Spring',
     priceStructure: {
         1: 37,
-        7: 233,
-        20: 592,
         40: 1036
     }
   },
@@ -83,8 +79,6 @@ var prices = [
     passName: 'Winter',
     priceStructure: {
       1: 30,
-      7: 190,
-      20: 480,
       40: 840
     }
   },
@@ -92,8 +86,6 @@ var prices = [
     passName: 'Summer',
     priceStructure: {
       1: 30,
-      7: 190,
-      20: 480,
       40: 840
     }
   },
@@ -101,8 +93,6 @@ var prices = [
     passName: 'Fall and Winter',
     priceStructure: {
       1: 59,
-      7: 389,
-      20: 978,
       40: 1688
     }
   },
@@ -110,22 +100,23 @@ var prices = [
     passName: 'Annual',
     priceStructure: {
       1: 100,
-      7: 630,
-      20: 1599,
       40: 2800
     }
   }
 ];
 
-function calcCost(prices, length, students) {
-  var cost = 0;
-  for (var i=0; i<length; i++) {
-    while (students >= prices[i][0]) {
-      students=students-prices[i][0];
-      cost = cost + prices[i][1];
-    }
+function calcCost(priceMap, students) {
+  var cost = -1;
+  if (students < 7) {
+    cost = priceMap[1] * students;
   }
-  return cost;
+  else if (students >= 7 && students < 20) {
+    cost = priceMap[1] * students * .9;
+  }
+  else if (students >= 20 && students < 40) {
+    cost = priceMap[1] * students * .8;
+  }
+  return cost.toFixed(2);
 }
 
 function toArrayAndReverse(priceMap) {
@@ -154,8 +145,8 @@ function calculateTotal() {
   if (students >= 40) 
     document.getElementById('totalCost').innerHTML = priceMap[40];
   else {
-    var array = toArrayAndReverse(priceMap);
-    document.getElementById('totalCost').innerHTML = calcCost(array, array.length, students);
+    // var array = toArrayAndReverse(priceMap);
+    document.getElementById('totalCost').innerHTML = calcCost(priceMap, students);
   }
 }
 </script>
