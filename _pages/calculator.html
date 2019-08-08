@@ -65,6 +65,8 @@ var prices = [
     passName: 'Fall',
     priceStructure: {
       1: 37,
+      7: 233, // 33.2857 per student 
+      20: 592, // 29.60 per student
       40: 1036
     }
   },
@@ -72,6 +74,8 @@ var prices = [
     passName: 'Spring',
     priceStructure: {
         1: 37,
+        7: 233, // 33.2857 per student 
+        20: 592, // 29.60 per student
         40: 1036
     }
   },
@@ -79,6 +83,8 @@ var prices = [
     passName: 'Winter',
     priceStructure: {
       1: 30,
+      7: 190, // 27.1428 per student
+      20: 480, // 24 per student
       40: 840
     }
   },
@@ -86,6 +92,8 @@ var prices = [
     passName: 'Summer',
     priceStructure: {
       1: 30,
+      7: 190, // 27.1428 per student
+      20: 480, // 24 per student
       40: 840
     }
   },
@@ -93,6 +101,8 @@ var prices = [
     passName: 'Fall and Winter',
     priceStructure: {
       1: 59,
+      7: 389, // 55.571428 per student
+      20: 978, // 48.90 per student
       40: 1688
     }
   },
@@ -100,23 +110,23 @@ var prices = [
     passName: 'Annual',
     priceStructure: {
       1: 100,
+      7: 630, // 90 per student
+      20: 1599, // 79.95 per student
       40: 2800
     }
   }
 ];
 
 function calcCost(priceMap, students) {
-  var cost = -1;
-  if (students < 7) {
-    cost = priceMap[1] * students;
-  }
-  else if (students >= 7 && students < 20) {
-    cost = priceMap[1] * students * .9;
+  var pricePerStudent = priceMap[1];
+  if (students >= 7 && students < 20) {
+    pricePerStudent = priceMap[7]/7;
   }
   else if (students >= 20 && students < 40) {
-    cost = priceMap[1] * students * .8;
+    pricePerStudent = priceMap[20]/20;
   }
-  return cost.toFixed(2);
+  
+  return (students * pricePerStudent).toFixed(2);
 }
 
 function toArrayAndReverse(priceMap) {
@@ -143,7 +153,7 @@ function calculateTotal() {
 
   var cost = 0;
   if (students >= 40) 
-    document.getElementById('totalCost').innerHTML = priceMap[40];
+    document.getElementById('totalCost').innerHTML = priceMap[40].toFixed(2);
   else {
     // var array = toArrayAndReverse(priceMap);
     document.getElementById('totalCost').innerHTML = calcCost(priceMap, students);
