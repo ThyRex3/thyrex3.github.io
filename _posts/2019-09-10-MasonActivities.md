@@ -4,8 +4,6 @@ title: "Mason's Scotland Activities - WIP"
 categories: personal
 author: Thy Dai
 ---
-# Activities
-
 ## Edinburgh
 1. Edinburgh Castle, Holyrood Palace, and Royal Yacht Britannia
 	- Admission: The Royal Edinburgh Ticket for $72/adult or £57/adult (£50/senior).
