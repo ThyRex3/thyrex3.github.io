@@ -4,8 +4,6 @@ title: "Mason's Scotland Restaurants - WIP"
 categories: personal
 author: Thy Dai
 ---
-# Restaurants
-
 ## Edinburgh
 1. Sandy Bells
 	- Open: Midday until 1 AM
