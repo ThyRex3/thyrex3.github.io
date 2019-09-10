@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mason's Scotland Activities - WIP
+title: "Mason's Scotland Activities - WIP"
 categories: personal
 author: Thy Dai
 ---
