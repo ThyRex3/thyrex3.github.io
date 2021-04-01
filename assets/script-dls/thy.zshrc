@@ -118,11 +118,21 @@ alias edit_profile='vim ~/.zshrc'
 alias edit_hosts='sudo vim /etc/hosts'
 alias goto_hosts='cd /etc/'
 alias dev='cd ~/dev/'
-# alias project_find='tree -df -L 2 -i ~/dev/ | grep -i'
+alias nook='cd ~/nh-companion/'
+alias project_find='tree -df -L 2 -i ~/dev/ | grep -i'
 alias getPorts='~/getPorts.sh'
 
 alias kube-lint="~/.gobin/kube-linter lint"
 alias k='kubectl'
+alias kubedev='kubectl --context=dev'
+alias kubedev-payit-proxy='kubectl --context=dev port-forward deploy/payit-proxy'
+alias kubestage='kubectl --context=staging'
+alias kubestageca='kubectl --context=ca-staging'
+alias kubeprod='kubectl --context=prod'
+alias kubeprodca='kubectl --context=ca-prod'
+alias kubemgmt='kubectl --context=mgmt'
+alias kubemisc='kubectl --context=mgmt --namespace=misc'
+alias kubejava='kubectl --context=mgmt --namespace=java'
 
 export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
 export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
@@ -151,6 +161,10 @@ alias ssmprodca='unset AWS_SECRET_ACCESS_KEY AWS_ACESS_KEY_ID && AWS_PROFILE=ca-
 alias grd='./gradlew'
 alias fork='open -n /Applications/Fork.app'
 
+gclp(){
+   git clone git@bitbucket.org:paypit/"$1"
+}
+
 # autoload -U colors; colors
 # source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
 # RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
@@ -165,10 +179,6 @@ prompt_context() {
 export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/Users/thyrex/.sdkman"
-# [[ -s "/Users/thyrex/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/thyrex/.sdkman/bin/sdkman-init.sh"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
